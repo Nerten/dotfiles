@@ -22,3 +22,5 @@ export HISTCONTROL=erasedups
 export HISTSIZE=10000
 # append to bash_history if Terminal.app quits
 shopt -s histappend
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH

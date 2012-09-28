@@ -1,0 +1,15 @@
+#!/bin/sh
+
+UA="Mozilla/5.0 (X11; U; Linux i686; ru; rv:1.9.1.1) Gecko/20090719 Gentoo Firefox/3.5.7 YB/4.3.0"
+
+if [ $# -lt 1 ]; then
+    echo "USAGE: $0 url"
+    exit 1
+fi
+
+#wget -c `lynx -useragent="$UA" -dump -listonly "$1" | grep -o 'http://narod.ru/disk/start.*'`
+
+curl -A "$UA" -O -L `curl -A "$UA" "$1"  2>/dev/null | grep -o 'href="/disk/[^"]\+' | sed 's|href="|http://narod.ru|'`
+
+#cat "$1" | while read url; do wget -c `wget -U"$UA" "$url" -O - 2>/dev/null | grep -o 'href="/disk/[^"]\+' | sed 's|href="|http://narod.ru|'`;done
+#cat "$1" | while read url; do wget -c `lynx -useragent="$UA" -dump -listonly "$url" | grep -o 'http://narod.ru/disk/start.*'`;done

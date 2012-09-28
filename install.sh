@@ -13,15 +13,15 @@ for file in `ls -a "${SCRIPT_PATH}"`
 do
 	basefile=`basename $file`
 	echo "$basefile"
-	if [ -f "$HOME/.$basefile" ];
+	if [ -f "$HOME/$basefile" ];
 	then
-		! [ -f "$HOME/.$basefile.bak" ] && \
-			cp "$HOME/.$basefile" "$HOME/.$basefile.bak" && \
-			echo "Backed up existing .$basefile to .$basefile.bak"
+		! [ -f "$HOME/$basefile.bak" ] && \
+#			cp "$HOME/$basefile" "$HOME/$basefile.bak" && \
+			echo "Backed up existing $basefile to $basefile.bak"
 	fi
-	if ! [ "$file" == '.' ] && ! [ "$file" == '..' ]; then
-		rm "$HOME/.$basefile"
-		ln -s $file "$HOME/.$basefile"
-		echo " - Linked $basefile"
-	fi
+#	if ! [ "$file" == '.' ] && ! [ "$file" == '..' ]; then
+#		rm "$HOME/.$basefile"
+#		ln -s $file "$HOME/.$basefile"
+#		echo " - Linked $basefile"
+#	fi
 done
