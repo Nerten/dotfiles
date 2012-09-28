@@ -10,18 +10,18 @@ echo "$SCRIPT_PATH"
 echo "$HOME"
 
 for file in `ls -a "${SCRIPT_PATH}"`
-do
-	basefile=`basename $file`
-	echo "$basefile"
-	if [ -f "$HOME/$basefile" ];
-	then
-		! [ -f "$HOME/$basefile.bak" ] && \
-#			cp "$HOME/$basefile" "$HOME/$basefile.bak" && \
-			echo "Backed up existing $basefile to $basefile.bak"
+do	
+	if ! [ "$file" == '.' ] && ! [ "$file" == '..' ] && ! [ "$file" == 'install.sh' ] && ! [ "$file" == '.git' ]; then
+		basefile=`basename $file`
+		echo "$basefile"
+		if [ -f "$HOME/$basefile" ];
+		then
+			! [ -f "$HOME/$basefile.bak" ] && \
+				cp "$HOME/$basefile" "$HOME/$basefile.bak" && \
+				echo "Backed up existing $basefile to $basefile.bak"
+		fi
+		rm "$HOME/$basefile"
+		ln -s "$SCRIPT_PATH/$file" "$HOME/$basefile"
+		echo " - Linked $basefile"
 	fi
-#	if ! [ "$file" == '.' ] && ! [ "$file" == '..' ]; then
-#		rm "$HOME/.$basefile"
-#		ln -s $file "$HOME/.$basefile"
-#		echo " - Linked $basefile"
-#	fi
 done
