@@ -10,3 +10,20 @@ alias svn-deleteall='svn status | grep "^\!" | awk "{print \$2}" | xargs svn del
 if [ -f ~/dev/tests_runner/bin/limb_unit.php ]; then
 	alias limb_unit="php ~/dev/tests_runner/bin/limb_unit.php"
 fi
+
+GRC=`which grc`
+if [ "$TERM" != dumb ] && [ -n GRC ]
+then
+    alias colourify="$GRC -es --colour=auto"
+    alias configure='colourify ./configure'
+    alias diff='colourify diff'
+    alias make='colourify make'
+    alias gcc='colourify gcc'
+    alias g++='colourify g++'
+    alias as='colourify as'
+    alias gas='colourify gas'
+    alias ld='colourify ld'
+    alias netstat='colourify netstat'
+    alias ping='colourify ping'
+    alias traceroute='colourify /usr/sbin/traceroute'
+fi
