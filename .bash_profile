@@ -1,5 +1,5 @@
 export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
+export LANG="en_US"
 
 if [ -d ~/bin ]; then
         export PATH=~/bin:$PATH  # add your bin folder to the path, if you have it.  It's a good place to add all your scripts
