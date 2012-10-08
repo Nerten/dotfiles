@@ -23,15 +23,14 @@ if [ -f /opt/local/etc/bash_completion ]; then
 	. /opt/local/etc/bash_completion
 fi
 
-# Bash completion (Homebrew)
-if which brew >/dev/null && [ -f `brew --prefix`/etc/bash_completion ]; then
-	. `brew --prefix`/etc/bash_completion
-fi
-
-# Brew completion
-# https://github.com/miku/brew-completion
-if [ -f ~/.ext/brew-completion/brew-completion.sh ]; then
-    . ~/.ext/brew-completion/brew-completion.sh
+if which brew >/dev/null 2>&1; then
+	# Bash completion (Homebrew)
+	[ -f `brew --prefix`/etc/bash_completion ] && source `brew --prefix`/etc/bash_completion
+	# Brew completion
+	# https://github.com/miku/brew-completion
+	[ -f ~/.ext/brew-completion/brew-completion.sh ] && source ~/.ext/brew-completion/brew-completion.sh
+	# Brew completition
+	[ -f `brew --prefix`/Library/Contributions/brew_bash_completion.sh ] && source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 fi
 
 # Add completion to source and .
